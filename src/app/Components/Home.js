@@ -9,8 +9,40 @@ export class Home extends React.Component {
             status : 0,
             homeLink : props.initialLinkName
         };
+        setTimeout(() => {
+            this.setState({ status: 1 });
+        }, 3000);
+        console.log('constructor');
     }
 
+    componenWillMount (){
+        console.log('componen Will Mount');
+    }
+
+    componentDidMount (){
+        console.log('component did mount');
+    }
+
+    componentWillReceiveProps (nextProp){
+        console.log('component will receive props', nextProp);
+    }
+
+    shouldComponentUpdate (nextProp, nextState){
+        console.log('should Component Update', nextProp, nextState);
+        return true;
+    }
+
+    componenWillUpdate (nextProp, nextState){
+        console.log('component Will Update', nextProp, nextState);
+    }
+
+    componentDidUpdate (prevProps, PrevState){
+        console.log('Component Did Update', prevProps, PrevState);
+    }
+
+    componentWillUnmount (){
+        console.log('component will unmount');
+    }
     onMakeOlder (){
         this.setState({
             age : this.state.age + 2

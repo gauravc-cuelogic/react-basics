@@ -9,7 +9,8 @@ class App extends React.Component {
   constructor (){
     super ();
     this.state = {
-      homeLink : "Home"
+      homeLink : "Home",
+      homeMounted : true
     };
   };
 
@@ -21,8 +22,24 @@ class App extends React.Component {
     alert("hi there!!!");
   };
 
+  onHandleHomeComp (){
+    this.setState({ homeMounted : !this.state.homeMounted });
+  }
   render() {
     
+    let homeComp = "";
+    if (this.state.homeMounted === true) {
+
+      homeComp = (
+        <Home
+          initialAge={27}
+          name={"Josh"}
+          greet={this.onGreet}
+          changeLink={this.onChangeLink.bind(this)}
+          initialLinkName={this.state.homeLink}
+        />
+      );
+    }
     return (
       <div className="container">
         <div className="row">
@@ -32,13 +49,12 @@ class App extends React.Component {
         </div>
         <div className="row">
           <div className="col-xs-10 col-xs-offset-1">
-            <Home
-              initialAge={27}
-              name={"Josh"}
-              greet={this.onGreet}
-              changeLink={this.onChangeLink.bind(this)}
-              initialLinkName={this.state.homeLink}
-            />
+            {homeComp}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-10 col-xs-offset-1">
+            <button onClick={this.onHandleHomeComp.bind(this)} className="btn btn-primary">(Un)Mount Home Component</button>
           </div>
         </div>
       </div>
