@@ -21,7 +21,7 @@ export class Home extends React.Component {
         return (
             <div>
                 <p>In a new Component!! </p>
-                <p>My name is {this.props.name} and i'am {this.state.age}</p>
+                <p>My name is {this.props.name} and iam {this.state.age}</p>
                 <p>Status : {this.state.status}</p>
                 <hr/>
                 <button onClick={this.onMakeOlder.bind(this)} className="btn btn-primary btn-sm">Make me Older!</button>
