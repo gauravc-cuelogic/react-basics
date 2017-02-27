@@ -6,9 +6,20 @@ import { Home } from "./Components/Home";
 
 class App extends React.Component {
 
+  constructor (){
+    super ();
+    this.state = {
+      homeLink : "Home"
+    };
+  };
+
+  onChangeLink (newName){
+    this.setState({ homeLink : newName });
+  }
+
   onGreet (){
     alert("hi there!!!");
-  }
+  };
 
   render() {
     
@@ -16,17 +27,22 @@ class App extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-xs-10 col-xs-offset-1">
-            <Header homeLink="Home"/>
+            <Header homeLink={this.state.homeLink}/>
           </div>
         </div>
         <div className="row">
           <div className="col-xs-10 col-xs-offset-1">
-            <Home initialAge={27} name={"Josh"} greet={this.onGreet} />
+            <Home
+              initialAge={27}
+              name={"Josh"}
+              greet={this.onGreet}
+              changeLink={this.onChangeLink.bind(this)}
+            />
           </div>
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 render(<App/>, window.document.getElementById('app'));
